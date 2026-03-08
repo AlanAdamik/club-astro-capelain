@@ -1,0 +1,147 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: fr
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "actualites"
+    label: "Actualités"
+    label_singular: "Actualité"
+    description: "Les articles et nouvelles du club. Cliquez sur un titre pour le modifier, ou sur « New Actualités » pour en créer un nouveau."
+    folder: "src/content/actualites"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - label: "Titre"
+        name: "title"
+        widget: "string"
+        hint: "Le titre de l'article, tel qu'il apparaîtra sur le site. Soyez descriptif ! Exemple : « Belle soirée d'observation de Saturne »"
+
+      - label: "Date de publication"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+        hint: "La date à laquelle l'article est publié. Les articles les plus récents apparaissent en premier sur le site."
+
+      - label: "Description courte"
+        name: "description"
+        widget: "string"
+        hint: "Un résumé en 1-2 phrases. Ce texte s'affiche dans la liste des actualités sur le site. Maximum 200 caractères conseillés."
+
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        required: false
+        allow_multiple: false
+        hint: "Optionnel. Une photo pour illustrer l'article. Formats acceptés : JPG, PNG. Taille recommandée : moins de 1 Mo."
+
+      - label: "Contenu"
+        name: "body"
+        widget: "markdown"
+        hint: "Le texte complet de l'article. Utilisez les boutons de la barre d'outils pour mettre en gras, créer des titres, des listes, etc."
+
+  - name: "evenements"
+    label: "Événements"
+    label_singular: "Événement"
+    description: "Les sorties, ateliers et soirées du club. Les événements passés s'affichent automatiquement dans une section séparée."
+    folder: "src/content/evenements"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{date}} à {{heure}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - label: "Titre"
+        name: "title"
+        widget: "string"
+        hint: "Le nom de l'événement. Exemple : « Soirée observation de Saturne » ou « Atelier astrophotographie »"
+
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+        hint: "La date de l'événement. Les événements passés sont automatiquement déplacés dans la section « passés »."
+
+      - label: "Heure"
+        name: "heure"
+        widget: "string"
+        hint: "L'heure de début. Écrivez-la comme vous la diriez : « 20h30 », « 21h00 », etc."
+
+      - label: "Lieu"
+        name: "lieu"
+        widget: "string"
+        hint: "L'adresse ou le nom du lieu. Exemple : « Terrain d'observation, chemin des Étoiles, Capelain »"
+
+      - label: "Description courte"
+        name: "description"
+        widget: "string"
+        hint: "Un résumé en 1-2 phrases qui donne envie de participer. S'affiche dans la liste des événements."
+
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        required: false
+        allow_multiple: false
+        hint: "Optionnel. Une affiche ou photo pour illustrer l'événement. Formats acceptés : JPG, PNG."
+
+      - label: "Contenu"
+        name: "body"
+        widget: "markdown"
+        hint: "Les détails de l'événement : programme, ce qu'il faut apporter, informations pratiques, etc."
+
+  - name: "galerie"
+    label: "Galerie"
+    label_singular: "Album photo"
+    description: "Les albums photo du club. Chaque album peut contenir plusieurs photos."
+    folder: "src/content/galerie"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - label: "Titre de l'album"
+        name: "title"
+        widget: "string"
+        hint: "Un titre descriptif pour l'album. Exemple : « Soirée Jupiter - Mars 2026 » ou « Nuit des Étoiles 2026 »"
+
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+        hint: "La date à laquelle les photos ont été prises."
+
+      - label: "Description"
+        name: "description"
+        widget: "string"
+        hint: "Un court texte décrivant l'album (1-2 phrases). S'affiche dans la grille de la galerie."
+
+      - label: "Photo de couverture"
+        name: "cover"
+        widget: "image"
+        hint: "La photo principale qui représente l'album. Choisissez la plus belle ! Elle s'affiche dans la grille de la galerie."
+
+      - label: "Photos"
+        name: "images"
+        widget: "list"
+        hint: "Cliquez sur « Add images » pour ajouter des photos une par une. Vous pouvez en ajouter autant que vous voulez."
+        field:
+          label: "Photo"
+          name: "image"
+          widget: "image"
+
+      - label: "Contenu"
+        name: "body"
+        widget: "markdown"
+        required: false
+        hint: "Optionnel. Un texte pour accompagner les photos (anecdotes, récit de la soirée, etc.)."

@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Admin — Club Astro Capelain</title>
+    <style>
+      #aide-banner {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #1a2150;
+        color: #fbbf24;
+        border: 1px solid rgba(251, 191, 36, 0.3);
+        border-radius: 9999px;
+        padding: 0.6rem 1.2rem;
+        font-family: system-ui, sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        transition: all 0.2s;
+      }
+      #aide-banner:hover {
+        background: #fbbf24;
+        color: #070b1a;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(251, 191, 36, 0.3);
+      }
+      #aide-banner svg {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <a id="aide-banner" href="/aide/" target="_blank" title="Ouvrir le guide d'utilisation dans un nouvel onglet">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Besoin d'aide ?
+    </a>
+  </body>
+</html>

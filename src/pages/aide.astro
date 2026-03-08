@@ -1,0 +1,684 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const sections = [
+  { id: "connexion", label: "Se connecter" },
+  { id: "tableau-de-bord", label: "Le tableau de bord" },
+  { id: "actualites", label: "Gérer les actualités" },
+  { id: "evenements", label: "Gérer les événements" },
+  { id: "galerie", label: "Gérer la galerie photo" },
+  { id: "images", label: "Ajouter des images" },
+  { id: "publier", label: "Publier les modifications" },
+  { id: "faq", label: "Questions fréquentes" },
+];
+---
+
+<BaseLayout title="Aide" description="Guide d'utilisation du site du Club Astro Capelain. Apprenez à gérer le contenu facilement.">
+  <section class="stars-bg border-b border-white/10 bg-gradient-to-b from-midnight via-deep-blue to-midnight">
+    <div class="mx-auto max-w-6xl px-4 py-16 text-center sm:py-24">
+      <h1 class="text-4xl font-extrabold text-white sm:text-5xl">Aide</h1>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
+        Guide complet pour gérer le site, pas à pas
+      </p>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-6xl px-4 py-16">
+    <div class="grid gap-12 lg:grid-cols-[250px_1fr]">
+
+      <!-- Sommaire (sticky sidebar) -->
+      <aside class="hidden lg:block">
+        <nav class="sticky top-24 rounded-2xl border border-white/10 bg-deep-blue p-6">
+          <h2 class="mb-4 text-sm font-bold uppercase tracking-wider text-slate-400">Sommaire</h2>
+          <ul class="space-y-2">
+            {sections.map(({ id, label }) => (
+              <li>
+                <a href={`#${id}`} class="block rounded-lg px-3 py-2 text-[0.95rem] text-slate-300 transition-colors hover:bg-white/5 hover:text-star-gold">
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-6 border-t border-white/10 pt-4">
+            <a
+              href="/admin/"
+              class="block rounded-xl bg-star-gold px-4 py-2.5 text-center text-sm font-semibold text-midnight transition-colors hover:bg-star-light"
+            >
+              Ouvrir l'admin
+            </a>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Sommaire mobile -->
+      <div class="rounded-2xl border border-white/10 bg-deep-blue p-6 lg:hidden">
+        <h2 class="mb-3 text-sm font-bold uppercase tracking-wider text-slate-400">Sommaire</h2>
+        <ul class="grid grid-cols-2 gap-2 sm:grid-cols-3">
+          {sections.map(({ id, label }) => (
+            <li>
+              <a href={`#${id}`} class="block rounded-lg px-3 py-2 text-sm text-slate-300 transition-colors hover:bg-white/5 hover:text-star-gold">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contenu -->
+      <div class="space-y-16">
+
+        <!-- Se connecter -->
+        <section id="connexion" class="scroll-mt-24">
+          <div class="aide-step-header">
+            <span class="aide-step-number">1</span>
+            <h2 class="aide-step-title">Se connecter à l'administration</h2>
+          </div>
+          <div class="aide-card">
+            <p>L'administration du site se fait depuis votre navigateur internet (Chrome, Firefox, Safari...). Pas besoin d'installer quoi que ce soit !</p>
+
+            <div class="aide-steps">
+              <div class="aide-step">
+                <div class="aide-step-badge">Étape 1</div>
+                <p>Ouvrez votre navigateur et allez à l'adresse du site, puis ajoutez <code>/admin/</code> à la fin.</p>
+                <div class="aide-example">
+                  Exemple : <code>https://club-astro-capelain.netlify.app<strong>/admin/</strong></code>
+                </div>
+              </div>
+
+              <div class="aide-step">
+                <div class="aide-step-badge">Étape 2</div>
+                <p>Cliquez sur le bouton <strong>« Login with Netlify Identity »</strong>.</p>
+              </div>
+
+              <div class="aide-step">
+                <div class="aide-step-badge">Étape 3</div>
+                <p>Entrez votre <strong>adresse email</strong> et votre <strong>mot de passe</strong> (ceux que vous avez choisis lors de l'invitation par email).</p>
+              </div>
+
+              <div class="aide-step">
+                <div class="aide-step-badge">Étape 4</div>
+                <p>Vous êtes connecté ! Le tableau de bord s'affiche.</p>
+              </div>
+            </div>
+
+            <div class="aide-tip">
+              <span class="aide-tip-icon">💡</span>
+              <div>
+                <strong>Astuce :</strong> Ajoutez la page d'administration à vos favoris pour y accéder plus rapidement !
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tableau de bord -->
+        <section id="tableau-de-bord" class="scroll-mt-24">
+          <div class="aide-step-header">
+            <span class="aide-step-number">2</span>
+            <h2 class="aide-step-title">Le tableau de bord</h2>
+          </div>
+          <div class="aide-card">
+            <p>Une fois connecté, vous voyez le tableau de bord avec trois rubriques sur la gauche :</p>
+
+            <div class="aide-grid">
+              <div class="aide-grid-item">
+                <div class="aide-grid-icon">📰</div>
+                <h3>Actualités</h3>
+                <p>Les articles et nouvelles du club</p>
+              </div>
+              <div class="aide-grid-item">
+                <div class="aide-grid-icon">📅</div>
+                <h3>Événements</h3>
+                <p>Les sorties, ateliers et soirées</p>
+              </div>
+              <div class="aide-grid-item">
+                <div class="aide-grid-icon">📷</div>
+                <h3>Galerie</h3>
+                <p>Les albums photo du club</p>
+              </div>
+            </div>
+
+            <p>Cliquez sur une rubrique pour voir la liste des éléments existants, les modifier ou en créer de nouveaux.</p>
+          </div>
+        </section>
+
+        <!-- Gérer les actualités -->
+        <section id="actualites" class="scroll-mt-24">
+          <div class="aide-step-header">
+            <span class="aide-step-number">3</span>
+            <h2 class="aide-step-title">Gérer les actualités</h2>
+          </div>
+          <div class="aide-card">
+            <h3 class="aide-subtitle">Créer une nouvelle actualité</h3>
+            <div class="aide-steps">
+              <div class="aide-step">
+                <div class="aide-step-badge">1</div>
+                <p>Dans la rubrique <strong>Actualités</strong>, cliquez sur le bouton <strong>« New Actualités »</strong> en haut.</p>
+              </div>
+              <div class="aide-step">
+                <div class="aide-step-badge">2</div>
+                <p>Remplissez les champs :</p>
+                <ul class="aide-field-list">
+                  <li><strong>Titre</strong> — Le titre de votre article (ex: « Beau ciel ce vendredi ! »)</li>
+                  <li><strong>Date de publication</strong> — Choisissez la date du jour</li>
+                  <li><strong>Description courte</strong> — Un résumé en 1-2 phrases (s'affiche dans la liste)</li>
+                  <li><strong>Image</strong> — Optionnel, une photo pour illustrer l'article</li>
+                  <li><strong>Contenu</strong> — Le texte complet de l'article</li>
+                </ul>
+              </div>
+              <div class="aide-step">
+                <div class="aide-step-badge">3</div>
+                <p>Cliquez sur <strong>« Publish »</strong> en haut à droite, puis <strong>« Publish now »</strong>.</p>
+              </div>
+            </div>
+
+            <h3 class="aide-subtitle">Modifier une actualité existante</h3>
+            <p>Cliquez simplement sur le titre de l'article dans la liste. Modifiez ce que vous souhaitez, puis cliquez sur <strong>« Publish »</strong> pour enregistrer.</p>
+
+            <h3 class="aide-subtitle">Supprimer une actualité</h3>
+            <p>Ouvrez l'article, puis cliquez sur <strong>« Delete entry »</strong> en bas de la page. Confirmez la suppression.</p>
+
+            <div class="aide-warning">
+              <span class="aide-tip-icon">⚠️</span>
+              <div>
+                <strong>Attention :</strong> La suppression est définitive. Une fois supprimé, l'article ne pourra pas être récupéré.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Gérer les événements -->
+        <section id="evenements" class="scroll-mt-24">
+          <div class="aide-step-header">
+            <span class="aide-step-number">4</span>
+            <h2 class="aide-step-title">Gérer les événements</h2>
+          </div>
+          <div class="aide-card">
+            <h3 class="aide-subtitle">Créer un nouvel événement</h3>
+            <div class="aide-steps">
+              <div class="aide-step">
+                <div class="aide-step-badge">1</div>
+                <p>Dans la rubrique <strong>Événements</strong>, cliquez sur <strong>« New Événements »</strong>.</p>
+              </div>
+              <div class="aide-step">
+                <div class="aide-step-badge">2</div>
+                <p>Remplissez les champs :</p>
+                <ul class="aide-field-list">
+                  <li><strong>Titre</strong> — Le nom de l'événement (ex: « Soirée observation de Saturne »)</li>
+                  <li><strong>Date</strong> — La date de l'événement</li>
+                  <li><strong>Heure</strong> — L'heure de début (ex: « 20h30 »)</li>
+                  <li><strong>Lieu</strong> — Où ça se passe (ex: « Terrain d'observation, Capelain »)</li>
+                  <li><strong>Description courte</strong> — Un résumé en 1-2 phrases</li>
+                  <li><strong>Image</strong> — Optionnel, une photo ou affiche</li>
+                  <li><strong>Contenu</strong> — Les détails : programme, ce qu'il faut apporter, etc.</li>
+                </ul>
+              </div>
+              <div class="aide-step">
+                <div class="aide-step-badge">3</div>
+                <p>Cliquez sur <strong>« Publish »</strong> puis <strong>« Publish now »</strong>.</p>
+              </div>
+            </div>
+
+            <div class="aide-tip">
+              <span class="aide-tip-icon">💡</span>
+              <div>
+                <strong>Astuce :</strong> Les événements dont la date est passée s'affichent automatiquement dans la section « Événements passés » sur le site. Pas besoin de les supprimer !
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Gérer la galerie -->
+        <section id="galerie" class="scroll-mt-24">
+          <div class="aide-step-header">
+            <span class="aide-step-number">5</span>
+            <h2 class="aide-step-title">Gérer la galerie photo</h2>
+          </div>
+          <div class="aide-card">
+            <h3 class="aide-subtitle">Créer un nouvel album</h3>
+            <div class="aide-steps">
+              <div class="aide-step">
+                <div class="aide-step-badge">1</div>
+                <p>Dans la rubrique <strong>Galerie</strong>, cliquez sur <strong>« New Galerie »</strong>.</p>
+              </div>
+              <div class="aide-step">
+                <div class="aide-step-badge">2</div>
+                <p>Remplissez les champs :</p>
+                <ul class="aide-field-list">
+                  <li><strong>Titre de l'album</strong> — Un nom descriptif (ex: « Soirée Jupiter - Mars 2026 »)</li>
+                  <li><strong>Date</strong> — La date de l'événement photographié</li>
+                  <li><strong>Description</strong> — Un court texte décrivant l'album</li>
+                  <li><strong>Photo de couverture</strong> — La photo principale qui représente l'album</li>
+                  <li><strong>Photos</strong> — Ajoutez autant de photos que vous voulez</li>
+                </ul>
+              </div>
+              <div class="aide-step">
+                <div class="aide-step-badge">3</div>
+                <p>Pour ajouter des photos, cliquez sur <strong>« Add photos »</strong>, puis choisissez une image depuis votre ordinateur.</p>
+              </div>
+              <div class="aide-step">
+                <div class="aide-step-badge">4</div>
+                <p>Répétez pour chaque photo, puis cliquez sur <strong>« Publish »</strong>.</p>
+              </div>
+            </div>
+
+            <div class="aide-tip">
+              <span class="aide-tip-icon">💡</span>
+              <div>
+                <strong>Astuce :</strong> Réduisez la taille de vos photos avant de les envoyer (max 1-2 Mo par photo). Des photos trop lourdes ralentissent le site. Vous pouvez utiliser un service gratuit comme <a href="https://tinypng.com" target="_blank" class="text-star-gold hover:text-star-light">tinypng.com</a>.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Ajouter des images -->
+        <section id="images" class="scroll-mt-24">
+          <div class="aide-step-header">
+            <span class="aide-step-number">6</span>
+            <h2 class="aide-step-title">Ajouter des images</h2>
+          </div>
+          <div class="aide-card">
+            <p>Quand vous voyez un champ image (dans un article, événement ou album), voici comment faire :</p>
+
+            <div class="aide-steps">
+              <div class="aide-step">
+                <div class="aide-step-badge">1</div>
+                <p>Cliquez sur le champ image ou sur le bouton <strong>« Choose an image »</strong>.</p>
+              </div>
+              <div class="aide-step">
+                <div class="aide-step-badge">2</div>
+                <p>Une fenêtre s'ouvre. Vous avez deux choix :</p>
+                <ul class="aide-field-list">
+                  <li><strong>Upload</strong> — Envoyer une nouvelle image depuis votre ordinateur</li>
+                  <li><strong>Choose existing</strong> — Réutiliser une image déjà envoyée</li>
+                </ul>
+              </div>
+              <div class="aide-step">
+                <div class="aide-step-badge">3</div>
+                <p>Si vous choisissez <strong>Upload</strong>, cliquez sur la zone ou glissez-déposez votre image.</p>
+              </div>
+              <div class="aide-step">
+                <div class="aide-step-badge">4</div>
+                <p>L'image apparaît. Cliquez sur <strong>« Choose selected »</strong> pour valider.</p>
+              </div>
+            </div>
+
+            <div class="aide-tip">
+              <span class="aide-tip-icon">💡</span>
+              <div>
+                <strong>Formats acceptés :</strong> JPG, PNG et WebP. Les formats JPG sont les plus courants pour les photos.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Publier les modifications -->
+        <section id="publier" class="scroll-mt-24">
+          <div class="aide-step-header">
+            <span class="aide-step-number">7</span>
+            <h2 class="aide-step-title">Publier les modifications</h2>
+          </div>
+          <div class="aide-card">
+            <p>Quand vous créez ou modifiez du contenu, il faut le <strong>publier</strong> pour qu'il apparaisse sur le site :</p>
+
+            <div class="aide-steps">
+              <div class="aide-step">
+                <div class="aide-step-badge">1</div>
+                <p>Cliquez sur le bouton <strong>« Publish »</strong> en haut à droite de l'écran.</p>
+              </div>
+              <div class="aide-step">
+                <div class="aide-step-badge">2</div>
+                <p>Choisissez <strong>« Publish now »</strong> dans le menu qui apparaît.</p>
+              </div>
+              <div class="aide-step">
+                <div class="aide-step-badge">3</div>
+                <p>Patientez <strong>1 à 2 minutes</strong>. Le site se met à jour automatiquement.</p>
+              </div>
+            </div>
+
+            <div class="aide-warning">
+              <span class="aide-tip-icon">⏱️</span>
+              <div>
+                <strong>Bon à savoir :</strong> Les modifications ne sont pas instantanées. Après avoir cliqué sur « Publish », le site doit se reconstruire. Cela prend généralement 1 à 2 minutes. Actualisez la page du site (touche F5) pour voir les changements.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="scroll-mt-24">
+          <div class="aide-step-header">
+            <span class="aide-step-number">?</span>
+            <h2 class="aide-step-title">Questions fréquentes</h2>
+          </div>
+          <div class="space-y-4">
+            <details class="aide-faq group">
+              <summary class="aide-faq-question">
+                Je ne me souviens plus de mon mot de passe, comment faire ?
+                <svg class="aide-faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="aide-faq-answer">
+                <p>Sur la page de connexion de l'admin, cliquez sur <strong>« Forgot password »</strong>. Entrez votre adresse email et vous recevrez un lien pour réinitialiser votre mot de passe.</p>
+              </div>
+            </details>
+
+            <details class="aide-faq group">
+              <summary class="aide-faq-question">
+                J'ai publié une modification mais je ne la vois pas sur le site ?
+                <svg class="aide-faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="aide-faq-answer">
+                <p>Après la publication, le site met <strong>1 à 2 minutes</strong> pour se mettre à jour. Patientez un peu, puis rechargez la page avec la touche <strong>F5</strong> (ou Cmd+R sur Mac).</p>
+                <p>Si après 5 minutes la modification n'apparaît toujours pas, essayez de vider le cache : <strong>Ctrl+Maj+Suppr</strong> (ou Cmd+Maj+Suppr sur Mac).</p>
+              </div>
+            </details>
+
+            <details class="aide-faq group">
+              <summary class="aide-faq-question">
+                Comment mettre du texte en gras ou ajouter un lien dans un article ?
+                <svg class="aide-faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="aide-faq-answer">
+                <p>L'éditeur de texte fonctionne comme un traitement de texte simplifié :</p>
+                <ul>
+                  <li>Sélectionnez du texte et cliquez sur <strong>B</strong> pour le mettre en <strong>gras</strong></li>
+                  <li>Cliquez sur <strong>I</strong> pour le mettre en <em>italique</em></li>
+                  <li>Cliquez sur l'icône de lien (chaîne) pour ajouter un lien internet</li>
+                  <li>Utilisez les boutons H1, H2 pour créer des titres et sous-titres</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="aide-faq group">
+              <summary class="aide-faq-question">
+                Mes photos sont trop lourdes, que faire ?
+                <svg class="aide-faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="aide-faq-answer">
+                <p>Avant d'envoyer vos photos, réduisez-les à une taille raisonnable (environ 1200 pixels de large et moins de 1 Mo). Vous pouvez utiliser :</p>
+                <ul>
+                  <li><a href="https://tinypng.com" target="_blank" class="text-star-gold hover:text-star-light">TinyPNG</a> — Glissez-déposez vos photos pour les compresser</li>
+                  <li><a href="https://squoosh.app" target="_blank" class="text-star-gold hover:text-star-light">Squoosh</a> — Outil Google gratuit pour optimiser les images</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="aide-faq group">
+              <summary class="aide-faq-question">
+                Puis-je modifier le site depuis mon téléphone ?
+                <svg class="aide-faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="aide-faq-answer">
+                <p>Techniquement oui, l'admin fonctionne sur téléphone. Mais c'est <strong>beaucoup plus confortable sur un ordinateur</strong>, surtout pour écrire des articles ou gérer les photos. Nous vous recommandons d'utiliser un ordinateur.</p>
+              </div>
+            </details>
+
+            <details class="aide-faq group">
+              <summary class="aide-faq-question">
+                J'ai fait une erreur, peut-on revenir en arrière ?
+                <svg class="aide-faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="aide-faq-answer">
+                <p>Si vous n'avez pas encore cliqué sur « Publish », quittez simplement la page sans sauvegarder. Si vous avez déjà publié, vous pouvez re-modifier le contenu et publier à nouveau. Pour une suppression accidentelle, contactez votre enfant qui pourra récupérer le contenu via l'historique Git.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .aide-step-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .aide-step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1rem;
+    background-color: var(--color-star-gold);
+    color: var(--color-midnight);
+    font-weight: 800;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .aide-step-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .aide-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--color-deep-blue);
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+
+  .aide-card p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .aide-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .aide-subtitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .aide-subtitle:first-child,
+  .aide-card > .aide-subtitle:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .aide-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .aide-step {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .aide-step p {
+    margin-bottom: 0.5rem;
+  }
+
+  .aide-step p:last-child {
+    margin-bottom: 0;
+  }
+
+  .aide-step-badge {
+    display: inline-block;
+    background-color: var(--color-navy);
+    color: var(--color-star-gold);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 9999px;
+    margin-bottom: 0.5rem;
+  }
+
+  .aide-example {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    font-family: monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+  }
+
+  .aide-example code {
+    color: var(--color-star-light);
+  }
+
+  .aide-field-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .aide-field-list li {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .aide-tip, .aide-warning {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .aide-tip {
+    background-color: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+  }
+
+  .aide-warning {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+
+  .aide-tip-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .aide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .aide-grid-item {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+  }
+
+  .aide-grid-item h3 {
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 0.5rem 0 0.25rem;
+  }
+
+  .aide-grid-item p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .aide-grid-icon {
+    font-size: 2rem;
+  }
+
+  .aide-faq {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--color-deep-blue);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .aide-faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: white;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .aide-faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .aide-faq-question:hover {
+    color: var(--color-star-gold);
+  }
+
+  .aide-faq-chevron {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    color: #64748b;
+  }
+
+  .aide-faq[open] .aide-faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .aide-faq-answer {
+    padding: 0 1.5rem 1.25rem;
+    color: #cbd5e1;
+    line-height: 1.8;
+  }
+
+  .aide-faq-answer p {
+    margin-bottom: 0.75rem;
+  }
+
+  .aide-faq-answer p:last-child {
+    margin-bottom: 0;
+  }
+
+  .aide-faq-answer ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .aide-faq-answer li {
+    margin-bottom: 0.25rem;
+  }
+
+  code {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+  }
+</style>

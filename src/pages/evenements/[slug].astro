@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const events = await getCollection("evenements");
+  return events.map((event) => ({
+    params: { slug: event.id },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+
+const formattedDate = new Date(event.data.date).toLocaleDateString("fr-FR", {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+---
+
+<BaseLayout title={event.data.title} description={event.data.description}>
+  <section class="stars-bg border-b border-white/10 bg-gradient-to-b from-midnight via-deep-blue to-midnight">
+    <div class="mx-auto max-w-6xl px-4 py-16 text-center sm:py-24">
+      <h1 class="text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
+        {event.data.title}
+      </h1>
+    </div>
+  </section>
+
+  <article class="mx-auto max-w-3xl px-4 py-16">
+    <div class="mb-10 grid gap-4 sm:grid-cols-3">
+      <div class="rounded-xl border border-white/10 bg-deep-blue p-4 text-center">
+        <div class="mb-1 text-sm text-slate-400">Date</div>
+        <div class="font-semibold text-white">{formattedDate}</div>
+      </div>
+      <div class="rounded-xl border border-white/10 bg-deep-blue p-4 text-center">
+        <div class="mb-1 text-sm text-slate-400">Heure</div>
+        <div class="font-semibold text-white">{event.data.heure}</div>
+      </div>
+      <div class="rounded-xl border border-white/10 bg-deep-blue p-4 text-center">
+        <div class="mb-1 text-sm text-slate-400">Lieu</div>
+        <div class="font-semibold text-white">{event.data.lieu}</div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <div class="mt-12 border-t border-white/10 pt-8">
+      <a href="/evenements/" class="text-star-gold hover:text-star-light transition-colors font-medium">
+        &larr; Retour aux événements
+      </a>
+    </div>
+  </article>
+</BaseLayout>
