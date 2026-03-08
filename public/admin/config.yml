@@ -145,3 +145,35 @@ collections:
         widget: "markdown"
         required: false
         hint: "Optionnel. Un texte pour accompagner les photos (anecdotes, récit de la soirée, etc.)."
+
+  - name: "pages"
+    label: "Pages du site"
+    label_singular: "Page"
+    description: "Le contenu des pages principales du site (accueil, le club, contact). Cliquez sur une page pour modifier son texte."
+    folder: "src/content/pages"
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    fields:
+      - label: "Titre"
+        name: "title"
+        widget: "string"
+        hint: "Le titre principal affiché en haut de la page."
+
+      - label: "Sous-titre"
+        name: "subtitle"
+        widget: "string"
+        required: false
+        hint: "Un court texte affiché sous le titre. Optionnel."
+
+      - label: "Description SEO"
+        name: "description"
+        widget: "string"
+        required: false
+        hint: "Optionnel. Description de la page pour les moteurs de recherche (Google). Si vide, une description par défaut sera utilisée."
+
+      - label: "Contenu"
+        name: "body"
+        widget: "markdown"
+        hint: "Le contenu principal de la page. Pour la page Accueil, ce champ n'est pas utilisé."

@@ -1,14 +1,20 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getEntry, render } from "astro:content";
+
+const page = await getEntry("pages", "contact");
+const { Content } = await render(page!);
 ---
 
-<BaseLayout title="Contact" description="Contactez le Club Astro Capelain pour toute question ou pour nous rejoindre.">
+<BaseLayout title={page!.data.title} description={page!.data.description}>
   <section class="stars-bg border-b border-white/10 bg-gradient-to-b from-midnight via-deep-blue to-midnight">
     <div class="mx-auto max-w-6xl px-4 py-16 text-center sm:py-24">
-      <h1 class="text-4xl font-extrabold text-white sm:text-5xl">Contact</h1>
-      <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
-        Une question ? Envie de nous rejoindre ? Écrivez-nous !
-      </p>
+      <h1 class="text-4xl font-extrabold text-white sm:text-5xl">{page!.data.title}</h1>
+      {page!.data.subtitle && (
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
+          {page!.data.subtitle}
+        </p>
+      )}
     </div>
   </section>
 
@@ -93,43 +99,41 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <div>
         <h2 class="mb-6 text-2xl font-bold text-white">Informations pratiques</h2>
-        <div class="space-y-6">
-          <div class="rounded-2xl border border-white/10 bg-deep-blue p-6">
-            <h3 class="mb-3 flex items-center gap-2 text-lg font-semibold text-white">
-              <svg class="h-5 w-5 text-star-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              Lieu de réunion
-            </h3>
-            <p class="text-slate-400">
-              Salle des fêtes de Capelain<br />
-              Place de la Mairie<br />
-              Capelain
-            </p>
-          </div>
-
-          <div class="rounded-2xl border border-white/10 bg-deep-blue p-6">
-            <h3 class="mb-3 flex items-center gap-2 text-lg font-semibold text-white">
-              <svg class="h-5 w-5 text-star-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              Horaires
-            </h3>
-            <p class="text-slate-400">
-              Réunions : tous les vendredis à 20h30<br />
-              Observations : selon la météo et le calendrier
-            </p>
-          </div>
-
-          <div class="rounded-2xl border border-white/10 bg-deep-blue p-6">
-            <h3 class="mb-3 flex items-center gap-2 text-lg font-semibold text-white">
-              <svg class="h-5 w-5 text-star-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-              Adhésion
-            </h3>
-            <p class="text-slate-400">
-              Cotisation annuelle : 25 €<br />
-              Moins de 18 ans : 10 €<br />
-              Ouvert à tous les niveaux
-            </p>
-          </div>
+        <div class="prose contact-info">
+          <Content />
         </div>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .contact-info :global(h2) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.125rem;
+    padding: 1.25rem 1.5rem 0.75rem;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .contact-info :global(h2:not(:first-child)) {
+    margin-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+  }
+
+  .contact-info :global(p) {
+    padding: 0 1.5rem;
+    color: #94a3b8;
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-info {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--color-deep-blue);
+    border-radius: 1rem;
+    padding-bottom: 1.25rem;
+  }
+</style>

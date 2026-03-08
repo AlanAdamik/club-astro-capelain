@@ -34,4 +34,13 @@ const galerie = defineCollection({
   }),
 });
 
-export const collections = { actualites, evenements, galerie };
+const pages = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/pages" }),
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    description: z.string().optional(),
+  }),
+});
+
+export const collections = { actualites, evenements, galerie, pages };

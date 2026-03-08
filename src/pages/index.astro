@@ -2,7 +2,9 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import EventCard from "../components/EventCard.astro";
 import ArticleCard from "../components/ArticleCard.astro";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
+
+const page = await getEntry("pages", "accueil");
 
 const allEvents = await getCollection("evenements");
 const upcomingEvents = allEvents
@@ -14,6 +16,10 @@ const allArticles = await getCollection("actualites");
 const latestArticles = allArticles
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 3);
+
+const titleParts = page!.data.title.split(" ");
+const lastWord = titleParts.pop();
+const firstWords = titleParts.join(" ");
 ---
 
 <BaseLayout title="Accueil">
@@ -21,12 +27,11 @@ const latestArticles = allArticles
   <section class="stars-bg relative overflow-hidden border-b border-white/10 bg-gradient-to-b from-midnight via-deep-blue to-midnight">
     <div class="mx-auto max-w-6xl px-4 py-24 text-center sm:py-32 lg:py-40">
       <h1 class="mb-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-        Club Astro
-        <span class="text-star-gold">Capelain</span>
+        {firstWords}
+        <span class="text-star-gold">{lastWord}</span>
       </h1>
       <p class="mx-auto mb-10 max-w-2xl text-lg text-slate-300 sm:text-xl">
-        Passionnés d'astronomie, nous observons le ciel depuis notre village.
-        Rejoignez-nous pour découvrir les merveilles de l'univers !
+        {page!.data.subtitle}
       </p>
       <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a
